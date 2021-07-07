@@ -1,0 +1,47 @@
+to do : tabelmodelView 数据库可视化。 新窗口创建RFID记录
+
+CREATE TABLE RFIDrecord
+(
+id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+RFIDid INT,
+license CHAR(7),
+site VARCHAR,
+time DATETIME
+);
+
+create table [carinfo](
+	[id] INTEGER PRIMARY KEY AUTOINCREMENT,
+	[RFIDid] TEXT(20) NOT NULL,
+  	[user_name] TEXT(20) COLLATE NOCASE,
+	[license] TEXT(7),
+	[phoneNum] TEXT(20),
+	[balance] INT NOT NULL
+);
+INSERT INTO carinfo(RFIDid,user_name,license,phoneNum,balance) VALUES('94A3F06D','AngryBeast','桂ASQ666','18177668899',100);
+INSERT INTO carinfo(RFIDid,user_name,license,phoneNum,balance) VALUES('E4A3EC5C','wsq','桂CKK777','18122368899',100);
+
+create table [records](
+	[id] INTEGER PRIMARY KEY AUTOINCREMENT,
+	[RFIDid] TEXT(20) NOT NULL,
+  	[site_name] TEXT(20) COLLATE NOCASE,
+	[license] TEXT(7),
+	[CreatedTime] TimeStamp NOT NULL DEFAULT (datetime('now','localtime'))
+);
+
+INSERT INTO records(RFIDid,site_name,license) VALUES ('E405EE6D','guilin','桂Ayu888');
+
+create table [moving](
+	[id] INTEGER PRIMARY KEY AUTOINCREMENT,
+	[RFIDid] TEXT(20) NOT NULL,
+  	[site_name] TEXT(20) COLLATE NOCASE,
+	[CreatedTime] TimeStamp NOT NULL DEFAULT (datetime('now','localtime'))
+);
+
+drop table moving;
+
+INSERT into moving(RFIDid,site_name) VALUES('94A3F06D','guilin');
+
+select * from moving;
+
+SELECT * FROM moving WHERE RFIDid='94A3F06D';
+select * from moving WHERE site_name='guilin';
